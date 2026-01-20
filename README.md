@@ -5,66 +5,56 @@
 
 ## 🏠Giriş
 
-Bu projede, akıllı evlerden elde edilen enerji tüketim verileri kullanılarak evin enerji tüketiminin normal seviyelerin üzerinde olup olmadığı incelenmiştir. Çalışmada saat ve hava koşulları gibi çevresel faktörlerin enerji tüketimi üzerindeki etkisi ele alınmıştır.
+Bu projede akıllı evlerden elde edilen enerji tüketim verileri kullanılarak, evin enerji tüketiminin normal seviyelerin üzerinde olup olmadığı incelenmiştir. Analizde saat bilgisi ve hava koşulları gibi temel çevresel faktörler dikkate alınmıştır.
 
-Veri seti; toplam enerji tüketimi ile birlikte sıcaklık, nem, rüzgar hızı ve hava durumu bilgilerini içermektedir. Bu veriler kullanılarak farklı koşullardaki ortalama enerji tüketimleri pivot tablolar yardımıyla hesaplanmış ve bu değerler evin normal tüketim davranışını temsil eden referanslar olarak modele dahil edilmiştir.
+Veri seti üzerinden pivot tablolar oluşturularak, farklı saatler ve sıcaklık değerleri için ortalama enerji tüketimleri hesaplanmıştır. Elde edilen bu ortalama değerler, evin normal tüketim davranışını temsil eden referans bilgiler olarak modele eklenmiştir.
 
-Son aşamada ise bu bilgiler kullanılarak farklı makine öğrenmesi algoritmaları ile enerji tüketiminin ortalamanın üzerinde olup olmadığı tahmin edilmiştir.
+Son olarak bu veriler kullanılarak makine öğrenmesi modelleri ile enerji tüketiminin ortalamanın üzerinde olup olmadığı tahmin edilmiştir.
 
 ## 💻Kodların açıklamaları
 
 ### Kütüphanelerin Eklenmesi
-![Makine_sertifikasi](img/1.png)
+![Makine_sertifikasi](img/import.png)
 
-Bu bölümde proje boyunca kullanacağım kütüphaneleri ekledim. Verileri işlemek için Pandas ve Numpy kullandım. Modelleme aşamasında eğitim–test ayırma, farklı makine öğrenmesi algoritmaları ve değerlendirme işlemleri için Scikit-learn kütüphanesinden faydalandım. Kategorik verileri sayısal hale getirmek için LabelEncoder, verileri ölçeklemek için ise StandardScaler kullandım.
+Bu bölümde veri işleme ve modelleme aşamalarında kullanacağım kütüphaneleri projeye dahil ettim.
+Pandas veri setini okumak ve düzenlemek için, scikit-learn kütüphanesini ise veri ayırma, ölçekleme ve makine öğrenmesi modellerini kurmak için kullandım. Ayrıca model başarısını ölçmek için accuracy_score fonksiyonunu ekledim.
 
 ### Veri Setinin Okunması ve Ön İşleme
+![Makine_sertifikasi](img/1.png)
+Bu bölümde veri setini programa okudum ve zaman bilgisini düzenledim. time sütununu sayısal hale getirip hatalı olan satırları temizledim, ardından zaman bilgisini kullanarak saat (hour) bilgisini çıkardım.
+
+Daha sonra enerji tüketimi ve hava koşullarını temsil eden gerekli sütunları sayısal formata dönüştürdüm ve eksik verileri temizledim. Son olarak, metin şeklinde olan hava durumu bilgisini (summary) makine öğrenmesi modellerinde kullanılabilmesi için LabelEncoder ile sayısal hale getirdim.
+
+
+### Pivot Tablolar ve Hedef Değişken
 ![Makine_sertifikasi](img/2.png)
-Bu bölümde veri setini programa okudum. Büyük bir veri olduğu için okuma sırasında low_memory=False kullandım. time sütununda sayısal olmayan değerler bulunduğundan bu alanı sayısala çevirdim ve hatalı satırları temizledim. Daha sonra zaman bilgisini datetime formatına dönüştürerek her kayıt için hour bilgisini oluşturdum.
 
-Ayrıca sıcaklık, nem ve rüzgar hızı gibi hava koşullarını temsil eden sütunları sayısal hale getirdim ve eksik verileri temizleyerek modelin daha sağlıklı verilerle eğitilmesini sağladım.
+Bu bölümde enerji tüketiminin farklı koşullardaki normal davranışını görebilmek için pivot tablolar oluşturdum.
+İlk pivot tabloda saat bazlı, ikinci pivot tabloda ise sıcaklık bazlı ortalama enerji tüketimlerini hesapladım. Elde edilen bu ortalama değerleri veri setine ekleyerek her kayıt için referans (normal) tüketim bilgisi oluşturdum.
 
+Ayrıca hedef değişkeni belirlerken, enerji tüketimi değeri ortalamanın üzerindeyse 1, altında ise 0 olacak şekilde sınıflandırma yaptım.
 
-### Kategorik Verinin Sayısallaştırılması ve Pivot Baseline Oluşturulması
+### Özellik Seçimi ve Veri Ayırma
 ![Makine_sertifikasi](img/3.png)
+Bu bölümde modelde kullanılacak giriş değişkenlerini belirledim. Saat bilgisi, hava koşulları ve pivot tablolarla elde edilen normal tüketim değerlerini birlikte kullandım.
 
-Bu aşamada makine öğrenmesi modellerinde kullanabilmek için sayısal olmayan summary sütununu LabelEncoder ile sayısal hale getirdim. Daha sonra enerji tüketiminin farklı koşullardaki normal davranışını görebilmek için saat, sıcaklık, nem ve rüzgar hızı değerlerine göre pivot tablolar oluşturdum. Bu pivotlar sayesinde belirli koşullarda evin ortalama ne kadar enerji harcadığını elde ettim.
-
-Elde edilen ortalama tüketim değerlerini veri setine ekleyerek her kayıt için ilgili koşullara ait referans (baseline) tüketim bilgisini modele dahil ettim.
-
-### Hedef Değişkenin Belirlenmesi ve Veri Setinin Hazırlanması
-![Makine_sertifikasi](img/4.png)
-Bu aşamada enerji tüketimini sınıflandırmak için hedef değişken oluşturdum. Tüketim değeri veri setindeki ortalama ile karşılaştırılarak, ortalamanın üzerindeki değerler 1, altındaki değerler 0 olarak etiketlendi ve problem ikili sınıflandırma haline getirildi.
-
-Modelde saat bilgisi, hava durumu verileri ve pivot tablolarla elde edilen ortalama tüketim (baseline) değerlerini birlikte kullandım. Birleştirme işlemlerinden sonra oluşan eksik değerleri doldurdum ve değişkenleri StandardScaler ile ölçeklendirdim. Son olarak veri setini eğitim ve test olarak ayırarak modelleme aşamasına hazır hale getirdim.
+Daha sonra veri setini eğitim ve test olacak şekilde ayırarak modeli eğitime hazır hale getirdim.
 
 ### Modellerin Eğitilmesi ve Sonuçların Değerlendirilmesi
-![Makine_sertifikasi](img/5.png)
+![Makine_sertifikasi](img/4.png)
 
-Bu bölümde farklı makine öğrenmesi algoritmalarını kullanarak modelleme yaptım. Karşılaştırma yapabilmek için Lojistik Regresyon, KNN ve Random Forest modellerini denedim. Her bir modeli eğitim verisiyle eğittim ve test verisi üzerinde tahmin yaparak doğruluk sonuçlarını hesapladım.
+Bu kısımda önce Random Forest modelini eğittim ve test verisi üzerindeki doğruluk oranını hesapladım. Ardından KNN modeli için verileri ölçeklendirdim çünkü KNN mesafe tabanlı çalıştığı için ölçeklendirme gerekiyor. KNN modelini de eğitip doğruluk değerini elde ettim.
 
-Modellerin performansını daha iyi görebilmek için doğruluk değerlerinin yanında classification_report çıktısını da inceledim.
-
-## 📊Çıktılar
+## 📊Çıktı
 ### Logistic Regression
-![Makine_sertifikasi](img/Lr.png)
+![Cikti](img/Çıktı.png)
 
-Bu çıktıda Lojistik Regresyon modeli eğitilmiş ve test verisi üzerinde yaklaşık %75 doğruluk elde edilmiştir. Model, özellikle düşük tüketim sınıfını (0) ayırt etmede daha başarılıdır. Yüksek tüketim sınıfında (1) ise başarı oranı daha düşüktür, bu da modelin genel eğilimi yakalasa da detaylı ayrımda sınırlı kaldığını göstermektedir.
-### KNN
-![Makine_sertifikasi](img/Knn.png)
-
-Bu çıktıda KNN modeli eğitilmiş ve yaklaşık %81.81 doğruluk elde edilmiştir. Lojistik Regresyon’a göre daha yüksek bir başarı sağladığı görülmektedir. Özellikle yüksek tüketim sınıfında (1) daha dengeli sonuçlar verdiği ve sınıflar arasındaki ayrımı daha iyi yaptığı söylenebilir.
-### Random Forest
-![Makine_sertifikasi](img/Rf.png)
-
-Bu çıktıda Random Forest modeli eğitilmiş ve yaklaşık %84 doğruluk elde edilmiştir. Diğer modellerle karşılaştırıldığında en yüksek başarıyı sağlayan modelin Random Forest olduğu görülmektedir. Hem düşük hem de yüksek tüketim sınıflarında daha dengeli sonuçlar verdiği için genel performans açısından en başarılı model olarak değerlendirilebilir.
+Bu çıktıda Random Forest ve KNN modellerinin doğruluk oranlarını sade bir tablo halinde karşılaştırdım. Sonuçlara göre Random Forest modeli bu veri setinde KNN modeline kıyasla biraz daha başarılı çıktı.
 
 ## ✅Sonuç
-Bu çalışmada akıllı ev enerji tüketim verileri kullanılarak, evin enerji tüketiminin ortalamanın üzerinde olup olmadığı incelenmiştir. Analiz sürecinde saat ve hava koşullarına göre oluşturulan pivot tablolar yardımıyla elde edilen ortalama tüketim değerleri modele dahil edilmiştir.
+Yapılan analizler sonucunda, saat ve hava koşullarına göre oluşturulan pivot tabloların enerji tüketimini yorumlamada faydalı olduğu görülmüştür. Bu pivotlardan elde edilen ortalama tüketim değerleri, modelin daha anlamlı tahminler yapmasına yardımcı olmuştur.
 
-Pivot tablolar sayesinde farklı koşullardaki normal enerji tüketim davranışı daha net görülmüş, bu referans değerlerin modele eklenmesi tüketimin daha sağlıklı değerlendirilmesini sağlamıştır. Uygulanan modeller arasında Random Forest algoritmasının daha başarılı sonuçlar verdiği gözlemlenmiş, özellikle saat bilgisi ve pivotlardan elde edilen ortalama tüketim değerlerinin önemli olduğu anlaşılmıştır.
-
-Sonuç olarak, pivot tabloların kullanıldığı bu yaklaşımın enerji tüketimi analizi ve sınıflandırma problemleri için uygun ve uygulanabilir olduğu görülmüştür.
+Kullanılan modeller arasında Random Forest algoritması daha dengeli sonuçlar verirken, KNN modeli de benzer bir performans göstermiştir. Genel olarak, pivot tablolarla desteklenen bu yaklaşımın enerji tüketimi sınıflandırması için uygun ve uygulanabilir olduğu sonucuna varılmıştır.
 
 ## 🎓Katılım Sertifikları 
 
