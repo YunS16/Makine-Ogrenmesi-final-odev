@@ -3,7 +3,7 @@
   <img src="img/banner.jpg" width="500" height="500">
 </p>
 
-## Tanım
+## 🏠Giriş
 
 Bu projede, akıllı evlerden elde edilen enerji tüketim verileri kullanılarak evin enerji tüketiminin normal seviyelerin üzerinde olup olmadığı incelenmiştir. Çalışmada saat ve hava koşulları gibi çevresel faktörlerin enerji tüketimi üzerindeki etkisi ele alınmıştır.
 
@@ -11,7 +11,7 @@ Veri seti; toplam enerji tüketimi ile birlikte sıcaklık, nem, rüzgar hızı 
 
 Son aşamada ise bu bilgiler kullanılarak farklı makine öğrenmesi algoritmaları ile enerji tüketiminin ortalamanın üzerinde olup olmadığı tahmin edilmiştir.
 
-## Kodların açıklamaları
+## 💻Kodların açıklamaları
 
 ### Kütüphanelerin Eklenmesi
 ![Makine_sertifikasi](img/1.png)
@@ -45,25 +45,33 @@ Bu bölümde farklı makine öğrenmesi algoritmalarını kullanarak modelleme y
 
 Modellerin performansını daha iyi görebilmek için doğruluk değerlerinin yanında classification_report çıktısını da inceledim. Son olarak Random Forest modelinin özellik önemlerini kullanarak enerji tüketimini en çok etkileyen değişkenleri analiz ettim ve bu sonuçları grafik ile gösterdim.
 
-## Çıktılar
+## 📊Çıktılar
 ### Logistic Regression
 ![Makine_sertifikasi](img/Lr.png)
+
 Bu çıktıda Lojistik Regresyon modeli eğitilmiş ve test verisi üzerinde yaklaşık %75 doğruluk elde edilmiştir. Model, özellikle düşük tüketim sınıfını (0) ayırt etmede daha başarılıdır. Yüksek tüketim sınıfında (1) ise başarı oranı daha düşüktür, bu da modelin genel eğilimi yakalasa da detaylı ayrımda sınırlı kaldığını göstermektedir.
 ### KNN
 ![Makine_sertifikasi](img/Knn.png)
+
 Bu çıktıda KNN modeli eğitilmiş ve yaklaşık %81.81 doğruluk elde edilmiştir. Lojistik Regresyon’a göre daha yüksek bir başarı sağladığı görülmektedir. Özellikle yüksek tüketim sınıfında (1) daha dengeli sonuçlar verdiği ve sınıflar arasındaki ayrımı daha iyi yaptığı söylenebilir.
 ### Random Forest
 ![Makine_sertifikasi](img/Rf.png)
+
 Bu çıktıda Random Forest modeli eğitilmiş ve yaklaşık %84 doğruluk elde edilmiştir. Diğer modellerle karşılaştırıldığında en yüksek başarıyı sağlayan modelin Random Forest olduğu görülmektedir. Hem düşük hem de yüksek tüketim sınıflarında daha dengeli sonuçlar verdiği için genel performans açısından en başarılı model olarak değerlendirilebilir.
 
-## Sonuç
+![Makine_sertifikasi](img/Tablo.png)
+
+Bu grafikte Random Forest modelinin hangi değişkenleri daha çok dikkate aldığı gösterilmektedir. Sıcaklık ve rüzgar hızı gibi çevresel faktörlerin enerji tüketimi üzerinde daha etkili olduğu görülmektedir.
+
+Bu grafikte Random Forest modelinin özellik önemleri verilmiştir. Sıcaklık ve rüzgar hızı gibi çevresel faktörlerin enerji tüketimi üzerinde daha etkili olduğu görülmektedir.
+## ✅Sonuç
 Bu çalışmada akıllı ev enerji tüketim verileri kullanılarak, evin enerji tüketiminin ortalamanın üzerinde olup olmadığı incelenmiştir. Analiz sürecinde saat ve hava koşullarına göre oluşturulan pivot tablolar yardımıyla elde edilen ortalama tüketim değerleri modele dahil edilmiştir.
 
 Pivot tablolar sayesinde farklı koşullardaki normal enerji tüketim davranışı daha net görülmüş, bu referans değerlerin modele eklenmesi tüketimin daha sağlıklı değerlendirilmesini sağlamıştır. Uygulanan modeller arasında Random Forest algoritmasının daha başarılı sonuçlar verdiği gözlemlenmiş, özellikle saat bilgisi ve pivotlardan elde edilen ortalama tüketim değerlerinin önemli olduğu anlaşılmıştır.
 
 Sonuç olarak, pivot tabloların kullanıldığı bu yaklaşımın enerji tüketimi analizi ve sınıflandırma problemleri için uygun ve uygulanabilir olduğu görülmüştür.
 
-## Katılım Sertifikları 
+## 🎓Katılım Sertifikları 
 
 ### Makine öğrenmesi
 ![Makine_sertifikasi](img/Makine_ogrenmesi.png)
