@@ -45,9 +45,9 @@ Daha sonra veri setini eğitim ve test olacak şekilde ayırarak modeli eğitime
 
 Bu kısımda önce Random Forest modelini eğittim ve test verisi üzerindeki doğruluk oranını hesapladım. Ardından KNN modeli için verileri ölçeklendirdim çünkü KNN mesafe tabanlı çalıştığı için ölçeklendirme gerekiyor. KNN modelini de eğitip doğruluk değerini elde ettim.
 
-## 📊Çıktı
-### Logistic Regression
-![Cikti](img/Çıktı.png)
+### 📊Çıktı
+
+![Cikti](img/çıktı.png)
 
 Bu çıktıda Random Forest ve KNN modellerinin doğruluk oranlarını sade bir tablo halinde karşılaştırdım. Sonuçlara göre Random Forest modeli bu veri setinde KNN modeline kıyasla biraz daha başarılı çıktı.
 
