@@ -1,4 +1,4 @@
-# Makine-Ogrenmesi-final--dev
+# Makine-Ogrenmesi-final-Odev
 <p align="center">
   <img src="img/banner.jpg" width="500" height="500">
 </p>
@@ -38,7 +38,7 @@ Bu aşamada enerji tüketimini sınıflandırmak için hedef değişken oluştur
 
 Modelde saat bilgisi, hava durumu verileri ve pivot tablolarla elde edilen ortalama tüketim (baseline) değerlerini birlikte kullandım. Birleştirme işlemlerinden sonra oluşan eksik değerleri doldurdum ve değişkenleri StandardScaler ile ölçeklendirdim. Son olarak veri setini eğitim ve test olarak ayırarak modelleme aşamasına hazır hale getirdim.
 
-###Modellerin Eğitilmesi ve Sonuçların Değerlendirilmesi
+### Modellerin Eğitilmesi ve Sonuçların Değerlendirilmesi
 ![Makine_sertifikasi](img/5.png)
 
 Bu bölümde farklı makine öğrenmesi algoritmalarını kullanarak modelleme yaptım. Karşılaştırma yapabilmek için Lojistik Regresyon, KNN ve Random Forest modellerini denedim. Her bir modeli eğitim verisiyle eğittim ve test verisi üzerinde tahmin yaparak doğruluk sonuçlarını hesapladım.
