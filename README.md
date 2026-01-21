@@ -56,7 +56,7 @@ Yapılan analizler sonucunda, saat ve hava koşullarına göre oluşturulan pivo
 
 Kullanılan modeller arasında Random Forest algoritması daha dengeli sonuçlar verirken, KNN modeli de benzer bir performans göstermiştir. Genel olarak, pivot tablolarla desteklenen bu yaklaşımın enerji tüketimi sınıflandırması için uygun ve uygulanabilir olduğu sonucuna varılmıştır.
 
-## 🎓Katılım Sertifikları 
+## Katılım Sertifikları 
 Makine Öğrenmesi dersi için 2 tane btk akademi kursu bitirdim sertifikalarım aşşağıdadır.
 ### Makine öğrenmesi
 ![Makine_sertifikasi](img/Makine_ogrenmesi.png)
