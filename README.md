@@ -3,7 +3,7 @@
   <img src="img/banner.jpg" width="500" height="500">
 </p>
 
-## 🏠Giriş
+## Giriş
 
 Bu projede akıllı evlerden elde edilen enerji tüketim verileri kullanılarak, evin enerji tüketiminin normal seviyelerin üzerinde olup olmadığı incelenmiştir. Analizde saat bilgisi ve hava koşulları gibi temel çevresel faktörler dikkate alınmıştır.
 
@@ -11,7 +11,7 @@ Veri seti üzerinden pivot tablolar oluşturularak, farklı saatler ve sıcaklı
 
 Son olarak bu veriler kullanılarak makine öğrenmesi modelleri ile enerji tüketiminin ortalamanın üzerinde olup olmadığı tahmin edilmiştir.
 
-## 💻Kodların açıklamaları
+## Kodların açıklamaları
 
 ### Kütüphanelerin Eklenmesi
 ![Makine_sertifikasi](img/import.png)
@@ -45,13 +45,13 @@ Daha sonra veri setini eğitim ve test olacak şekilde ayırarak modeli eğitime
 
 Bu kısımda önce Random Forest modelini eğittim ve test verisi üzerindeki doğruluk oranını hesapladım. Ardından KNN modeli için verileri ölçeklendirdim çünkü KNN mesafe tabanlı çalıştığı için ölçeklendirme gerekiyor. KNN modelini de eğitip doğruluk değerini elde ettim.
 
-### 📊Çıktı
+### Çıktı
 
 ![Cikti](img/çıktı.png)
 
 Bu çıktıda Random Forest ve KNN modellerinin doğruluk oranlarını sade bir tablo halinde karşılaştırdım. Sonuçlara göre Random Forest modeli bu veri setinde KNN modeline kıyasla biraz daha başarılı çıktı.
 
-## ✅Sonuç
+## Sonuç
 Yapılan analizler sonucunda, saat ve hava koşullarına göre oluşturulan pivot tabloların enerji tüketimini yorumlamada faydalı olduğu görülmüştür. Bu pivotlardan elde edilen ortalama tüketim değerleri, modelin daha anlamlı tahminler yapmasına yardımcı olmuştur.
 
 Kullanılan modeller arasında Random Forest algoritması daha dengeli sonuçlar verirken, KNN modeli de benzer bir performans göstermiştir. Genel olarak, pivot tablolarla desteklenen bu yaklaşımın enerji tüketimi sınıflandırması için uygun ve uygulanabilir olduğu sonucuna varılmıştır.
